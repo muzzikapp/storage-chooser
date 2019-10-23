@@ -1,5 +1,7 @@
 package com.codekidlabs.storagechooser.utils;
 
+import android.os.Environment;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.util.Arrays;
@@ -68,5 +70,21 @@ public class FileUtil {
             dirList[i] = dirNames.get(i);
         }
         return dirList;
+    }
+
+    public static File getDefaultStartDirectory() {
+        File musicDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
+        File startFolder;
+        if (musicDir.exists() && musicDir.isDirectory()) {
+            startFolder = musicDir;
+        } else {
+            File externalStorage = Environment.getExternalStorageDirectory();
+            if (externalStorage.exists() && externalStorage.isDirectory()) {
+                startFolder = externalStorage;
+            } else {
+                startFolder = new File("/"); // root
+            }
+        }
+        return startFolder;
     }
 }

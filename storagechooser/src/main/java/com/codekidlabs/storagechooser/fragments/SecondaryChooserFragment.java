@@ -151,11 +151,17 @@ public class SecondaryChooserFragment extends android.app.DialogFragment {
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    String jointPath = theSelectedPath + "/" + customStoragesList.get(i);
-                    if (FileUtil.isDir(jointPath)) {
-                        populateList("/" + customStoragesList.get(i));
-                    } else {
-                        StorageChooser.onSelectListener.onSelect(jointPath);
+                    try {
+                        String jointPath = theSelectedPath + "/" + customStoragesList.get(i);
+                        if (FileUtil.isDir(jointPath)) {
+                            populateList("/" + customStoragesList.get(i));
+                        } else {c
+                            StorageChooser.onSelectListener.onSelect(jointPath);
+                            dissmissDialog(FLAG_DISSMISS_NORMAL);
+                        }
+                    } catch (Exception e){
+                        // Has an error, set the default directory
+                        StorageChooser.onSelectListener.onSelect(FileUtil.getDefaultStartDirectory().getPath());
                         dissmissDialog(FLAG_DISSMISS_NORMAL);
                     }
                 }

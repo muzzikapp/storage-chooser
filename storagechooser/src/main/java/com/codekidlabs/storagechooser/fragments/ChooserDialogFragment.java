@@ -76,7 +76,7 @@ public class ChooserDialogFragment extends android.app.DialogFragment {
         mConfig = StorageChooser.sConfig;
         mHandler = new Handler();
         // init storage-chooser content [localization]
-        if (mConfig.getContent() == null) {
+        if (mConfig != null && mConfig.getContent() == null) {
             mContent = new Content();
         } else {
             mContent = mConfig.getContent();

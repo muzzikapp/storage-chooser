@@ -155,7 +155,7 @@ public class SecondaryChooserFragment extends android.app.DialogFragment {
                         String jointPath = theSelectedPath + "/" + customStoragesList.get(i);
                         if (FileUtil.isDir(jointPath)) {
                             populateList("/" + customStoragesList.get(i));
-                        } else {c
+                        } else {
                             StorageChooser.onSelectListener.onSelect(jointPath);
                             dissmissDialog(FLAG_DISSMISS_NORMAL);
                         }
